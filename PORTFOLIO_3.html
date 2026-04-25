@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Agawane — Graphic Designer Portfolio</title>
+<meta name="description" content="Graphic Designer portfolio — branding, social media, and identity design.">
+<meta property="og:title" content="Aditya Agawane — Graphic Designer">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #f7f3ed;
+  --ink: #111010;
+  --accent: #cc1a1a;
+  --accent-dark: #a01515;
+  --muted: #8a8178;
+  --line: rgba(17,16,16,0.1);
+  --white: #ffffff;
+  --card: #f0ebe3;
+  --shadow-sm: 0 4px 20px rgba(17,16,16,0.08);
+  --shadow-md: 0 12px 40px rgba(17,16,16,0.14);
+  --shadow-lg: 0 24px 60px rgba(17,16,16,0.2);
+  --shadow-accent: 0 8px 30px rgba(204,26,26,0.25);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Custom Cursor */
+#cursor-dot {
+  position: fixed; width: 8px; height: 8px;
+  background: var(--accent); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s;
+}
+#cursor-ring {
+  position: fixed; width: 40px; height: 40px;
+  border: 1.5px solid var(--ink); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s, border-color 0.3s;
+  opacity: 0.5;
+}
+body.hovering #cursor-dot { width: 14px; height: 14px; }
+body.hovering #cursor-ring { width: 60px; height: 60px; opacity: 0.3; border-color: var(--accent); }
+
+/* Noise Texture */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 1;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Navigation */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 3.5rem;
+  background: rgba(247, 243, 237, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 600; letter-spacing: 0.05em;
+  color: var(--ink); text-decoration: none;
+}
+.nav-logo span { color: var(--accent); font-style: italic; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none;
+  transition: color 0.2s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1px; background: var(--accent);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.nav-burger { display: none; flex-direction: column; gap: 5px; cursor: none; }
+.nav-burger span { width: 22px; height: 1.5px; background: var(--ink); display: block; transition: all 0.3s; }
+.nav-mobile {
+  display: none; position: fixed; top: 65px; left: 0; right: 0;
+  background: rgba(247, 243, 237, 0.98); backdrop-filter: blur(16px);
+  z-index: 499; padding: 2rem 3.5rem; border-bottom: 1px solid var(--line);
+  flex-direction: column; gap: 1.5rem;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a { font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+
+/* Hero */
+.hero {
+  min-height: 100vh; padding-top: 65px;
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 5rem 4rem; border-right: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 2rem;
+}
+.hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4.5rem, 9vw, 9rem);
+  line-height: 0.9; font-weight: 300; color: var(--ink);
+  margin-bottom: 2.5rem;
+}
+.hero-name em { font-style: italic; color: var(--accent); }
+.hero-desc {
+  font-size: 0.95rem; line-height: 1.85; color: var(--muted);
+  max-width: 40ch; margin-bottom: 3rem; font-weight: 400;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 1rem;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink); text-decoration: none;
+  width: fit-content;
+}
+.hero-cta-line { width: 40px; height: 1.5px; background: var(--ink); transition: width 0.4s ease; }
+.hero-cta:hover .hero-cta-line { width: 70px; background: var(--accent); }
+.hero-cta:hover { color: var(--accent); }
+.hero-right {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 5rem 3.5rem; position: relative; overflow: hidden;
+}
+.hero-bg-word {
+  position: absolute; bottom: -2rem; right: -1rem;
+  font-family: 'Cormorant Garamond', serif; font-size: 22vw;
+  color: rgba(17,16,16,0.03); line-height: 1;
+  pointer-events: none; user-select: none; font-weight: 600;
+  white-space: nowrap;
+}
+.hero-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 3rem; z-index: 1;
+}
+.stat-box {
+  background: var(--white); padding: 1.8rem 1.5rem;
+  border: 1px solid var(--line);
+  opacity: 0; transform: translateY(24px) translateZ(0);
+  transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s;
+  transform-style: preserve-3d;
+}
+.stat-box.visible { opacity: 1; transform: translateY(0) translateZ(0); }
+.stat-box:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px) translateZ(20px);
+  z-index: 2;
+}
+.stat-box:nth-child(1) { transition-delay: 0.1s; }
+.stat-box:nth-child(2) { transition-delay: 0.2s; }
+.stat-box:nth-child(3) { transition-delay: 0.3s; }
+.stat-box:nth-child(4) { transition-delay: 0.4s; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif; font-size: 3.5rem;
+  font-weight: 300; line-height: 1; color: var(--ink); margin-bottom: 0.4rem;
+}
+.stat-num sup { font-size: 1.4rem; color: var(--accent); }
+.stat-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.hero-contact-strip { display: flex; flex-direction: column; gap: 0.7rem; z-index: 1; }
+.hero-contact-item {
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 0.78rem; color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.hero-contact-item:hover { color: var(--ink); }
+.contact-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* Section Common */
+section { padding: 7rem 4rem; }
+.s-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 4.5rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--line);
+}
+.s-title-wrap { display: flex; align-items: flex-end; gap: 1rem; }
+.s-num {
+  font-family: 'Cormorant Garamond', serif; font-size: 5rem;
+  line-height: 1; color: rgba(17,16,16,0.06); font-weight: 600;
+}
+.s-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 300;
+  letter-spacing: 0.02em; line-height: 1; color: var(--ink);
+}
+.s-title em { font-style: italic; color: var(--accent); }
+.s-tag { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+/* About */
+#about { background: var(--ink); }
+#about .s-title { color: var(--cream); }
+#about .s-num { color: rgba(247,243,237,0.05); }
+#about .s-tag { color: rgba(247,243,237,0.3); }
+#about .s-header { border-bottom-color: rgba(247,243,237,0.1); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.about-text { font-size: 0.95rem; line-height: 1.95; color: rgba(247,243,237,0.6); }
+.about-text strong { color: var(--cream); font-weight: 500; }
+.about-text p + p { margin-top: 1.5rem; }
+.about-quote {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1.6rem; line-height: 1.55; color: var(--cream);
+  border-left: 2px solid var(--accent); padding-left: 1.5rem;
+  margin-top: 2.5rem; font-weight: 300;
+}
+.about-details { display: flex; flex-direction: column; gap: 0; }
+.about-detail-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 0; border-bottom: 1px solid rgba(247,243,237,0.08);
+}
+.about-detail-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,243,237,0.3); }
+.about-detail-value { font-size: 0.88rem; color: rgba(247,243,237,0.7); }
+
+/* Skills */
+#skills { background: var(--cream); }
+.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+.skill-card {
+  background: var(--white); padding: 2.5rem;
+  border: 1px solid var(--line);
+  transition: background 0.35s, transform 0.4s, box-shadow 0.4s;
+  cursor: none;
+  transform-style: preserve-3d;
+}
+.skill-card:hover {
+  background: var(--ink);
+  transform: translateY(-8px) translateZ(20px);
+  box-shadow: 0 20px 50px rgba(17,16,16,0.25);
+}
+.skill-card:hover .skill-name { color: var(--cream); }
+.skill-card:hover .skill-desc { color: rgba(247,243,237,0.5); }
+.skill-card:hover .skill-n { color: rgba(247,243,237,0.05); }
+.skill-card:hover .skill-bar-fill { background: var(--accent); }
+.skill-n {
+  font-family: 'Cormorant Garamond', serif; font-size: 4rem;
+  color: rgba(17,16,16,0.05); line-height: 1; margin-bottom: 0.5rem;
+  font-weight: 600; transition: color 0.35s;
+}
+.skill-name {
+  font-family: 'Syne', sans-serif; font-size: 1.1rem;
+  font-weight: 600; letter-spacing: 0.02em;
+  margin-bottom: 0.7rem; transition: color 0.35s;
+}
+.skill-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; transition: color 0.35s; }
+.skill-bar { height: 1.5px; background: var(--line); }
+.skill-bar-fill { height: 100%; background: var(--ink); width: 0; transition: background 0.35s, width 1.4s ease; }
+.tools-row { margin-top: 3.5rem; }
+.tools-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
+.tools-wrap { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.tool-chip {
+  padding: 0.6rem 1.4rem; background: var(--white);
+  border: 1px solid var(--line); font-size: 0.78rem;
+  letter-spacing: 0.06em; color: var(--ink);
+  transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s; cursor: none;
+}
+.tool-chip:hover { background: var(--ink); color: var(--cream); transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+
+/* Clients Marquee */
+#clients { background: var(--white); padding: 4rem 0; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.marquee-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 2rem; padding: 0 4rem; }
+.marquee-track { display: flex; gap: 0; white-space: nowrap; animation: marquee 22s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  flex-shrink: 0; padding: 0 3rem;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+  font-weight: 300; color: var(--muted);
+  border-right: 1px solid var(--line);
+  display: flex; align-items: center; gap: 0.8rem;
+  transition: color 0.2s;
+}
+.marquee-item:hover { color: var(--ink); }
+.marquee-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Work Section */
+#work { background: var(--cream); }
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.work-card {
+  background: var(--white); padding: 2.5rem;
+  border: 1px solid var(--line); cursor: none;
+  position: relative; overflow: hidden;
+  transition: box-shadow 0.4s;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.work-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--ink);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  z-index: 0;
+}
+.work-card:hover::before { transform: scaleY(1); }
+.work-card > * { position: relative; z-index: 1; }
+.work-card:hover .wc-n { color: rgba(247,243,237,0.05); }
+.work-card:hover .wc-client { color: var(--accent); }
+.work-card:hover .wc-title { color: var(--cream); }
+.work-card:hover .wc-desc { color: rgba(247,243,237,0.5); }
+.work-card:hover .wc-bar { background: var(--accent); width: 100%; }
+.work-card:hover .wc-arrow { opacity: 1; transform: translateX(0); }
+.wc-n {
+  font-family: 'Cormorant Garamond', serif; font-size: 5rem;
+  color: rgba(17,16,16,0.05); line-height: 1; margin-bottom: 1rem;
+  font-weight: 600; transition: color 0.4s;
+}
+.wc-bar { width: 30px; height: 1.5px; background: var(--ink); margin-bottom: 1.5rem; transition: width 0.5s ease, background 0.4s; }
+.wc-client { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; transition: color 0.4s; }
+.wc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; margin-bottom: 0.8rem; transition: color 0.4s; }
+.wc-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.7; transition: color 0.4s; }
+.wc-arrow {
+  position: absolute; bottom: 1.5rem; right: 1.5rem;
+  font-size: 1.4rem; color: var(--accent);
+  opacity: 0; transform: translateX(-10px);
+  transition: opacity 0.4s, transform 0.4s;
+}
+
+/* Experience */
+#experience { background: var(--white); }
+.exp-list { display: flex; flex-direction: column; gap: 0; }
+.exp-item {
+  display: grid; grid-template-columns: 220px 1fr; gap: 3rem;
+  padding: 3rem 0; border-bottom: 1px solid var(--line);
+}
+.exp-year {
+  font-size: 0.78rem; color: var(--muted); padding-top: 0.2rem;
+  display: flex; flex-direction: column; gap: 0.4rem;
+}
+.exp-year span { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+.exp-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; margin-bottom: 0.4rem; }
+.exp-company { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.exp-desc { font-size: 0.85rem; line-height: 1.8; color: var(--muted); margin-bottom: 1rem; }
+.exp-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.exp-tag { font-size: 0.68rem; letter-spacing: 0.08em; padding: 0.35rem 0.8rem; border: 1px solid var(--line); color: var(--muted); }
+
+/* Contact */
+#contact {
+  background: var(--ink); padding: 8rem 4rem;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.contact-pre { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+.contact-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 8vw, 7rem); font-weight: 300; color: var(--cream);
+  line-height: 1; margin-bottom: 2rem;
+}
+.contact-big em { font-style: italic; color: var(--accent); }
+.contact-sub { font-size: 0.9rem; line-height: 1.8; color: rgba(247,243,237,0.5); max-width: 44ch; margin-bottom: 4rem; }
+.contact-links { display: flex; gap: 4rem; }
+.clink { text-decoration: none; display: flex; flex-direction: column; gap: 0.4rem; transition: transform 0.3s; }
+.clink:hover { transform: translateY(-4px); }
+.clink-lbl { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(247,243,237,0.3); }
+.clink-val { font-size: 0.9rem; color: var(--cream); border-bottom: 1px solid rgba(247,243,237,0.15); padding-bottom: 0.3rem; transition: border-color 0.3s, color 0.3s; }
+.clink:hover .clink-val { color: var(--accent); border-color: var(--accent); }
+
+footer {
+  background: var(--ink); padding: 2rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(247,243,237,0.08);
+  font-size: 0.72rem; color: rgba(247,243,237,0.3); letter-spacing: 0.08em;
+}
+footer strong { color: rgba(247,243,237,0.6); }
+
+/* ==========================================
+   UPGRADED LIGHTBOX WITH 3D SLIDE & ARROWS
+   ========================================== */
+.lightbox {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(10, 8, 8, 0.97);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease;
+  perspective: 1200px;
+}
+.lightbox.active { opacity: 1; pointer-events: all; }
+
+.lightbox-close {
+  position: absolute; top: 1.5rem; right: 2rem;
+  color: rgba(255,255,255,0.6); font-size: 1.4rem;
+  cursor: none; transition: color 0.2s, transform 0.3s;
+  font-family: monospace; z-index: 10; line-height: 1;
+}
+.lightbox-close:hover { color: var(--accent); transform: rotate(90deg); }
+
+/* Side Arrows */
+.lb-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white; width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: none; transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  z-index: 10; font-size: 1.1rem;
+  backdrop-filter: blur(8px);
+}
+.lb-arrow:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-accent);
+}
+.lb-arrow-left { left: 1.5rem; }
+.lb-arrow-left:hover { transform: translateY(-50%) translateX(-3px); }
+.lb-arrow-right { right: 1.5rem; }
+.lb-arrow-right:hover { transform: translateY(-50%) translateX(3px); }
+
+.lb-arrow-left::before { content: '←'; }
+.lb-arrow-right::before { content: '→'; }
+
+/* Lightbox stage */
+.lightbox-stage {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.lightbox-img {
+  max-width: 58vw; max-height: 80vh;
+  object-fit: contain;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  transform-origin: center center;
+}
+
+/* Slide Animations — kept snappy */
+@keyframes slideInFromRight {
+  from { transform: translateX(40px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+@keyframes slideInFromLeft {
+  from { transform: translateX(-40px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+@keyframes slideOutToLeft {
+  from { transform: translateX(0);    opacity: 1; }
+  to   { transform: translateX(-30px); opacity: 0; }
+}
+@keyframes slideOutToRight {
+  from { transform: translateX(0);   opacity: 1; }
+  to   { transform: translateX(30px); opacity: 0; }
+}
+
+.lightbox-img.slide-in-right  { animation: slideInFromRight 0.22s ease both; }
+.lightbox-img.slide-in-left   { animation: slideInFromLeft  0.22s ease both; }
+.lightbox-img.slide-out-left  { animation: slideOutToLeft   0.12s ease both; }
+.lightbox-img.slide-out-right { animation: slideOutToRight  0.12s ease both; }
+
+/* Loading spinner shown while image is fetching */
+.lightbox-stage.loading::after {
+  content: '';
+  position: absolute;
+  width: 32px; height: 32px;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  z-index: 5;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Lightbox info bar */
+.lightbox-info {
+  position: absolute; bottom: 1.8rem; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 2rem;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(12px);
+  padding: 0.7rem 1.4rem; border: 1px solid rgba(255,255,255,0.08);
+  white-space: nowrap;
+}
+.lightbox-caption { font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); }
+.lightbox-counter { font-size: 0.68rem; letter-spacing: 0.12em; color: var(--accent); flex-shrink: 0; }
+
+/* Dot indicators */
+.lightbox-dots {
+  position: absolute; bottom: 5.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px; align-items: center;
+}
+.lb-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,0.25); transition: background 0.3s, transform 0.3s;
+}
+.lb-dot.active { background: var(--accent); transform: scale(1.4); }
+
+/* Project thumbnails strip */
+.lightbox-thumbs {
+  position: absolute; top: 1.2rem; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px; max-width: 70vw; overflow-x: auto;
+  scrollbar-width: none; padding: 4px;
+}
+.lightbox-thumbs::-webkit-scrollbar { display: none; }
+.lb-thumb {
+  width: 42px; height: 42px; object-fit: cover;
+  cursor: none; border: 2px solid transparent;
+  transition: border-color 0.3s, transform 0.3s;
+  flex-shrink: 0; opacity: 0.5;
+  filter: grayscale(40%);
+}
+.lb-thumb.active { border-color: var(--accent); opacity: 1; transform: scale(1.08); filter: none; }
+.lb-thumb:hover { opacity: 0.8; }
+
+/* Fade Animations */
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 1.8rem; }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 3rem 2rem; border-right: none; border-bottom: 1px solid var(--line); }
+  .hero-right { padding: 3rem 2rem; }
+  .hero-bg-word { font-size: 40vw; }
+  section { padding: 5rem 2rem; }
+  .s-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .work-grid { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .contact-links { flex-direction: column; align-items: center; gap: 2rem; }
+  footer { padding: 1.5rem 2rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .lightbox-img { max-width: 90vw; max-height: 65vh; }
+  .lb-arrow { width: 40px; height: 40px; font-size: 0.9rem; }
+  .lb-arrow-left { left: 0.5rem; }
+  .lb-arrow-right { right: 0.5rem; }
+}
+
+@media (pointer: coarse) {
+  body { cursor: auto; }
+  #cursor-dot, #cursor-ring { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<nav>
+  <a href="#" class="nav-logo">Aditya <span>Agawane</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-burger" id="burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#skills" onclick="toggleMenu()">Skills</a>
+  <a href="#clients" onclick="toggleMenu()">Clients</a>
+  <a href="#work" onclick="toggleMenu()">Work</a>
+  <a href="#experience" onclick="toggleMenu()">Experience</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Graphic Designer · Based in India</div>
+    <h1 class="hero-name">Aditya<br><em>Agawane</em></h1>
+    <p class="hero-desc">Crafting identities, campaigns & experiences that don't just look good — they communicate, convert, and leave a lasting impression.</p>
+    <a href="#work" class="hero-cta">
+      <div class="hero-cta-line"></div>
+      View My Work
+    </a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-word">DESIGN</div>
+    <div class="hero-stats">
+      <div class="stat-box"><div class="stat-num">3<sup>+</sup></div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-box"><div class="stat-num">15<sup>+</sup></div><div class="stat-label">Brands Worked With</div></div>
+      <div class="stat-box"><div class="stat-num">4</div><div class="stat-label">Core Services</div></div>
+      <div class="stat-box"><div class="stat-num">100<sup>%</sup></div><div class="stat-label">Creative Dedication</div></div>
+    </div>
+    <div class="hero-contact-strip">
+      <a href="mailto:adityagawane90@gmail.com" class="hero-contact-item"><span class="contact-dot"></span> adityagawane90@gmail.com</a>
+      <a href="tel:8999085870" class="hero-contact-item"><span class="contact-dot"></span> +91 8999 085 870</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="s-header"><div class="s-title-wrap"><div class="s-num">01</div><h2 class="s-title">About <em>Me</em></h2></div><div class="s-tag">The Story</div></div>
+  <div class="about-grid">
+    <div class="fade-up">
+      <div class="about-text">
+        <p>I'm a <strong>passionate and innovative graphic designer</strong> dedicated to turning ideas into visually striking and meaningful designs. Based in India, I work with brands to create identities that resonate and endure.</p>
+        <p>With expertise in branding, logo design, social media design, and digital campaigns, my work combines creativity with strategic thinking to <strong>bring your vision to life</strong>.</p>
+        <p>I believe design is more than aesthetics — it's a language. Every pixel, every shape, every color is a deliberate choice in service of communication.</p>
+      </div>
+      <blockquote class="about-quote">"Let's create something extraordinary together."</blockquote>
+    </div>
+    <div class="about-details fade-up delay-2">
+      <div class="about-detail-row"><span class="about-detail-label">Based In</span><span class="about-detail-value">India</span></div>
+      <div class="about-detail-row"><span class="about-detail-label">Experience</span><span class="about-detail-value">3+ Years</span></div>
+      <div class="about-detail-row"><span class="about-detail-label">Brands Served</span><span class="about-detail-value">15+ Brands</span></div>
+      <div class="about-detail-row"><span class="about-detail-label">Primary Tools</span><span class="about-detail-value">Adobe Photoshop · Illustrator</span></div>
+      <div class="about-detail-row"><span class="about-detail-label">Specialisation</span><span class="about-detail-value">Branding · Social Media · Identity</span></div>
+      <div class="about-detail-row"><span class="about-detail-label">Availability</span><span class="about-detail-value">Open to New Projects ✦</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="s-header"><div class="s-title-wrap"><div class="s-num">02</div><h2 class="s-title">Skills & <em>Tools</em></h2></div><div class="s-tag">Capabilities</div></div>
+  <div class="skills-grid">
+    <div class="skill-card fade-up"><div class="skill-n">01</div><div class="skill-name">Social Media Design</div><div class="skill-desc">Eye-catching posts, stories, and banners crafted for maximum engagement across all platforms.</div><div class="skill-bar"><div class="skill-bar-fill" data-w="92"></div></div></div>
+    <div class="skill-card fade-up delay-1"><div class="skill-n">02</div><div class="skill-name">Banner Design</div><div class="skill-desc">High-impact print and digital banners that command attention and drive action.</div><div class="skill-bar"><div class="skill-bar-fill" data-w="88"></div></div></div>
+    <div class="skill-card fade-up delay-2"><div class="skill-n">03</div><div class="skill-name">Logo Design</div><div class="skill-desc">Unique, memorable logomarks that capture the essence of your brand identity.</div><div class="skill-bar"><div class="skill-bar-fill" data-w="85"></div></div></div>
+    <div class="skill-card fade-up delay-3"><div class="skill-n">04</div><div class="skill-name">Branding Design</div><div class="skill-desc">Cohesive brand systems — from color palettes to typography — that tell a consistent story.</div><div class="skill-bar"><div class="skill-bar-fill" data-w="90"></div></div></div>
+  </div>
+  <div class="tools-row fade-up">
+    <div class="tools-label">Tools I Master</div>
+    <div class="tools-wrap">
+      <div class="tool-chip">Adobe Photoshop</div>
+      <div class="tool-chip">Adobe Illustrator</div>
+      <div class="tool-chip">Canva Pro</div>
+      <div class="tool-chip">InDesign</div>
+    </div>
+  </div>
+</section>
+
+<section id="clients">
+  <div class="marquee-label">Trusted By Brands Across Industries</div>
+  <div class="marquee-track" id="marquee">
+    <div class="marquee-item"><span class="marquee-dot"></span>Kalptree Wellness</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>TICCO</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>3WORKS Luxury Real Estate</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Deccan Honda</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Punmiya Jewellers</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>15+ More Brands</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Kalptree Wellness</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>TICCO</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>3WORKS Luxury Real Estate</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Deccan Honda</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Punmiya Jewellers</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>15+ More Brands</div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="s-header"><div class="s-title-wrap"><div class="s-num">03</div><h2 class="s-title">Selected <em>Work</em></h2></div><div class="s-tag">Portfolio</div></div>
+  <div class="work-grid" id="workGrid"></div>
+</section>
+
+<section id="experience">
+  <div class="s-header"><div class="s-title-wrap"><div class="s-num">04</div><h2 class="s-title">Experience & <em>Career</em></h2></div><div class="s-tag">Journey</div></div>
+  <div class="exp-list">
+    <div class="exp-item fade-up">
+      <div class="exp-year">2022 — Present<span>3+ Years</span></div>
+      <div class="exp-main">
+        <div class="exp-title">Freelance Graphic Designer</div>
+        <div class="exp-company">Independent · India</div>
+        <div class="exp-desc">Providing end-to-end design solutions for 15+ brands across industries including automotive, wellness, real estate, and jewellery. Specializing in brand identity, social media content, and digital campaigns.</div>
+        <div class="exp-tags"><span class="exp-tag">Brand Identity</span><span class="exp-tag">Social Media</span><span class="exp-tag">Logo Design</span><span class="exp-tag">Campaigns</span></div>
+      </div>
+    </div>
+    <div class="exp-item fade-up delay-1">
+      <div class="exp-year">2021 — 2022<span>Foundation</span></div>
+      <div class="exp-main">
+        <div class="exp-title">Junior Graphic Designer</div>
+        <div class="exp-company">Early Career · India</div>
+        <div class="exp-desc">Developed foundational design skills working on client briefs, branding projects, and marketing collateral. Built expertise in Adobe Photoshop and Illustrator through hands-on project work.</div>
+        <div class="exp-tags"><span class="exp-tag">Adobe Photoshop</span><span class="exp-tag">Adobe Illustrator</span><span class="exp-tag">Print Design</span></div>
+      </div>
+    </div>
+    <div class="exp-item fade-up delay-2">
+      <div class="exp-year">2020 — 2021<span>Learning</span></div>
+      <div class="exp-main">
+        <div class="exp-title">Design Education & Self-Development</div>
+        <div class="exp-company">Self-Taught · Online Courses</div>
+        <div class="exp-desc">Pursued intensive self-education in graphic design principles, visual communication, and industry tools. Built an initial portfolio through personal projects and experimental work.</div>
+        <div class="exp-tags"><span class="exp-tag">Visual Design</span><span class="exp-tag">Typography</span><span class="exp-tag">Color Theory</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-pre">Available for Work</div>
+  <div class="contact-big">Let's <em>Create</em><br>Together</div>
+  <p class="contact-sub">Have a project in mind? Let's turn your ideas into visuals that communicate, convert, and leave a lasting mark.</p>
+  <div class="contact-links">
+    <a href="mailto:adityagawane90@gmail.com" class="clink"><span class="clink-lbl">Email</span><span class="clink-val">adityagawane90@gmail.com</span></a>
+    <a href="tel:8999085870" class="clink"><span class="clink-lbl">Phone</span><span class="clink-val">+91 8999 085 870</span></a>
+    <a href="https://www.behance.net/" class="clink" target="_blank"><span class="clink-lbl">Behance</span><span class="clink-val">View Portfolio</span></a>
+  </div>
+</section>
+
+<footer>
+  <span>© <span id="year"></span> <strong>Aditya Agawane</strong></span>
+  <span>Graphic Designer · India</span>
+  <span>Crafted with <strong>intention</strong></span>
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <div class="lightbox-close" id="lightboxClose">✕</div>
+  <button class="lb-arrow lb-arrow-left" id="prevBtn" aria-label="Previous image"></button>
+  <div class="lightbox-stage">
+    <img id="lightboxImg" class="lightbox-img" src="" alt="Project preview">
+  </div>
+  <button class="lb-arrow lb-arrow-right" id="nextBtn" aria-label="Next image"></button>
+  <div class="lightbox-dots" id="lightboxDots"></div>
+  <div class="lightbox-info">
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+    <div id="lightboxCounter" class="lightbox-counter"></div>
+  </div>
+  <div class="lightbox-thumbs" id="lightboxThumbs"></div>
+</div>
+
+<script>
+// ─── PROJECTS DATA ─────────────────────────────────────────────────────────
+// NOTE: Paths are relative — this HTML file must sit inside the Protfolio/ folder
+// alongside the public/ directory. Open via VS Code Live Server or any local server.
+const projects = [
+  {
+    client: "TICCO",
+    title: "Brand Identity & Campaigns",
+    desc: "Corporate brand identity, festive campaigns, and premium social media creatives for The Indian Consultancy & Company.",
+    images: [
+      "public/Ticco/3.jpg",
+      "public/Ticco/4.jpg",
+      "public/Ticco/5.jpg",
+      "public/Ticco/6.jpg",
+      "public/Ticco/7.jpg",
+      "public/Ticco/Campaign_Jan26-01.jpg",
+      "public/Ticco/Campaign_Jan26-02.jpg",
+      "public/Ticco/Campaign_Jan26-03.jpg",
+      "public/Ticco/Campaign_Jan26-04.jpg",
+      "public/Ticco/Campaign_Jan26-05.jpg",
+      "public/Ticco/Campaign_Jan26-06.jpg",
+      "public/Ticco/Earth%20Day-02.jpg",
+      "public/Ticco/Earth%20Day-05.jpg",
+      "public/Ticco/Feb-26-01.jpg",
+      "public/Ticco/Feb-26-04.jpg",
+      "public/Ticco/Final-Jan-01.jpg",
+      "public/Ticco/Final-Jan-02.jpg",
+      "public/Ticco/Final-Jan-03.jpg",
+      "public/Ticco/Final-Jan-04.jpg",
+      "public/Ticco/Final-Jan-05.jpg",
+      "public/Ticco/Final-Jan-06.jpg",
+      "public/Ticco/Final-Jan-07.jpg",
+      "public/Ticco/March-02.jpg",
+      "public/Ticco/March-03.jpg",
+      "public/Ticco/March-04.jpg",
+      "public/Ticco/March-05.jpg",
+      "public/Ticco/March-06.jpg",
+      "public/Ticco/New%20year-01.jpg",
+      "public/Ticco/New%20year-02.jpg",
+      "public/Ticco/New%20year-06.jpg",
+      "public/Ticco/OCT-01.jpg",
+      "public/Ticco/OCT-05.jpg",
+      "public/Ticco/OCT-11.jpg"
+    ],
+    caption: "TICCO — Brand Identity & Social Media Campaigns"
+  },
+  {
+    client: "3WORKS",
+    title: "Luxury Real Estate Marketing",
+    desc: "Premium social media campaigns, property launch creatives, and high-end marketing visuals for 3WORKS Luxury Real Estate Services.",
+    images: [
+      "public/3WORKS/3%20Feb-04.jpg",
+      "public/3WORKS/3%20Feb-5.jpg",
+      "public/3WORKS/3%20Feb-6.jpg",
+      "public/3WORKS/Dec-01.jpg",
+      "public/3WORKS/Dec-Jan-04.jpg",
+      "public/3WORKS/Dec-Jan-05.jpg",
+      "public/3WORKS/Dec-Jan-06.jpg",
+      "public/3WORKS/Gudi%20padwa-02.jpg",
+      "public/3WORKS/Layout-04.jpg",
+      "public/3WORKS/Layout-2-02.jpg",
+      "public/3WORKS/Layout-2-05-05.jpg",
+      "public/3WORKS/Layout-2-06.jpg",
+      "public/3WORKS/Layout-2-07.jpg",
+      "public/3WORKS/March-02.jpg",
+      "public/3WORKS/March-03.jpg",
+      "public/3WORKS/New%20Y-3W-01.jpg",
+      "public/3WORKS/New%20Y-3W-02-02-02.jpg",
+      "public/3WORKS/New%20Y-3W-1-06.jpg"
+    ],
+    caption: "3WORKS — Luxury Real Estate Marketing Creatives"
+  },
+  {
+    client: "Kalptree",
+    title: "Wellness Brand Campaigns",
+    desc: "Social media campaigns, product launches, and brand creatives for Kalptree, a natural superfood wellness brand.",
+    images: [
+      "public/Kaptree/Final-Kalptree-01.jpg",
+      "public/Kaptree/Final-Kalptree-02.jpg",
+      "public/Kaptree/Final-Kalptree-03.jpg",
+      "public/Kaptree/Final-Kalptree-04.jpg",
+      "public/Kaptree/Final-Kalptree-05.jpg",
+      "public/Kaptree/Final-Kalptree-06.jpg",
+      "public/Kaptree/Final-Kalptree-07.jpg",
+      "public/Kaptree/Final-Kalptree-08.jpg",
+      "public/Kaptree/Final-Kalptree-09.jpg",
+      "public/Kaptree/Final-Kalptree-10.jpg",
+      "public/Kaptree/Final-Kalptree-11.jpg",
+      "public/Kaptree/Final-Kalptree-12.jpg",
+      "public/Kaptree/Final-Kalptree-13.jpg",
+      "public/Kaptree/Final-Kalptree-14.jpg",
+      "public/Kaptree/Final-Kalptree-15.jpg",
+      "public/Kaptree/Final-Kalptree-16.jpg",
+      "public/Kaptree/Mushroom%20P-01.jpg",
+      "public/Kaptree/Mushroom%20P-02.jpg",
+      "public/Kaptree/Mushroom%20P-03.jpg",
+      "public/Kaptree/Mushroom%20P-04.jpg",
+      "public/Kaptree/Mushroom%20P-05.jpg"
+    ],
+    caption: "Kalptree Wellness — Brand Campaigns & Product Design"
+  },
+  {
+    client: "Deccan Honda",
+    title: "Automotive Campaigns",
+    desc: "Festival campaigns, new model launches, and social media creatives for Deccan Honda.",
+    images: [
+      "https://picsum.photos/id/111/800/1000",
+      "https://picsum.photos/id/112/800/1000",
+      "https://picsum.photos/id/114/800/1000"
+    ],
+    caption: "Deccan Honda — Automotive Campaigns & Launches"
+  },
+  {
+    client: "Punmiya Jewellers",
+    title: "Jewellery Branding",
+    desc: "Elegant promotional creatives, festival offers, and brand campaigns for Punmiya Jewellers.",
+    images: [
+      "https://picsum.photos/id/41/800/1000",
+      "https://picsum.photos/id/42/800/1000",
+      "https://picsum.photos/id/43/800/1000"
+    ],
+    caption: "Punmiya Jewellers — Premium Jewellery Brand Campaigns"
+  },
+  {
+    client: "15+ Brands",
+    title: "Social Media Design",
+    desc: "Diverse posts, banners, and promotional designs across multiple industries and platforms.",
+    images: [
+      "https://picsum.photos/id/48/800/1000",
+      "https://picsum.photos/id/49/800/1000",
+      "https://picsum.photos/id/50/800/1000"
+    ],
+    caption: "15+ Brands — Social Media & Promotional Designs"
+  }
+];
+
+// ─── GENERATE WORK CARDS ────────────────────────────────────────────────────
+const workGrid = document.getElementById('workGrid');
+projects.forEach((proj, idx) => {
+  const delays = ['', 'delay-1', 'delay-2', '', 'delay-1', 'delay-2'];
+  const card = document.createElement('div');
+  card.className = `work-card fade-up ${delays[idx] || ''}`;
+  card.setAttribute('data-project-index', idx);
+  card.innerHTML = `
+    <div class="wc-n">0${idx + 1}</div>
+    <div class="wc-bar"></div>
+    <div class="wc-client">${proj.client}</div>
+    <div class="wc-title">${proj.title}</div>
+    <div class="wc-desc">${proj.desc}</div>
+    <div class="wc-arrow">→</div>
+  `;
+  card.addEventListener('click', () => openLightbox(idx));
+  workGrid.appendChild(card);
+});
+
+// ─── 3D CARD TILT ────────────────────────────────────────────────────────────
+document.querySelectorAll('.work-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotX = ((y - cy) / cy) * -6;
+    const rotY = ((x - cx) / cx) * 8;
+    card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(12px)`;
+    card.style.boxShadow = `${-rotY * 2}px ${rotX * 2}px 40px rgba(17,16,16,0.2)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateZ(0)';
+    card.style.boxShadow = '';
+  });
+});
+
+// ─── IMAGE PRELOAD CACHE ─────────────────────────────────────────────────────
+// Every Image() object is stored here so the browser never re-fetches
+const imgCache = {};
+
+function preload(src) {
+  if (!src || imgCache[src]) return;
+  const img = new Image();
+  img.src = src;
+  imgCache[src] = img;
+}
+
+// Preload a window around the current index (prev 1 + next 3)
+function preloadAround(projIdx, imgIdx) {
+  const imgs = projects[projIdx].images;
+  const range = [-1, 0, 1, 2, 3];
+  range.forEach(offset => {
+    const i = imgIdx + offset;
+    if (i >= 0 && i < imgs.length) preload(imgs[i]);
+  });
+}
+
+// Preload ALL images of a project in the background, low priority
+function preloadAll(projIdx) {
+  const imgs = projects[projIdx].images;
+  let i = 0;
+  function next() {
+    if (i >= imgs.length) return;
+    preload(imgs[i++]);
+    // Stagger so we don't saturate the connection at once
+    setTimeout(next, 80);
+  }
+  next();
+}
+
+// On page load: preload first image of every project so cards feel instant
+window.addEventListener('load', () => {
+  projects.forEach((p, idx) => {
+    preload(p.images[0]);
+    // Preload full set of first project immediately, others after a delay
+    setTimeout(() => preloadAll(idx), idx * 600);
+  });
+});
+
+// Preload on card hover so by the time they click it's already in cache
+document.querySelectorAll('.work-card').forEach((card, idx) => {
+  let hoverTimer;
+  card.addEventListener('mouseenter', () => {
+    hoverTimer = setTimeout(() => preloadAll(idx), 100);
+  });
+  card.addEventListener('mouseleave', () => clearTimeout(hoverTimer));
+});
+
+// ─── LIGHTBOX STATE ──────────────────────────────────────────────────────────
+let currentProjectIndex = 0;
+let currentImageIndex   = 0;
+let isAnimating         = false;
+
+const lightbox      = document.getElementById('lightbox');
+const lightboxStage = document.querySelector('.lightbox-stage');
+const lightboxImg   = document.getElementById('lightboxImg');
+const captionEl     = document.getElementById('lightboxCaption');
+const counterEl     = document.getElementById('lightboxCounter');
+const dotsEl        = document.getElementById('lightboxDots');
+const thumbsEl      = document.getElementById('lightboxThumbs');
+
+// OUT = 120ms, IN = 220ms — feels instant but still polished
+const OUT_MS = 120;
+const IN_MS  = 220;
+
+function buildDots(count) {
+  dotsEl.innerHTML = '';
+  for (let i = 0; i < Math.min(count, 20); i++) {
+    const d = document.createElement('div');
+    d.className = 'lb-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => { if (!isAnimating) goToImage(i, i > currentImageIndex ? 'next' : 'prev'); });
+    dotsEl.appendChild(d);
+  }
+}
+
+function buildThumbs(images) {
+  thumbsEl.innerHTML = '';
+  images.forEach((src, i) => {
+    const img = document.createElement('img');
+    img.src = src;                         // thumbs are small — fine to load normally
+    img.className = 'lb-thumb' + (i === 0 ? ' active' : '');
+    img.alt = `Image ${i + 1}`;
+    img.addEventListener('click', () => { if (!isAnimating) goToImage(i, i > currentImageIndex ? 'next' : 'prev'); });
+    thumbsEl.appendChild(img);
+  });
+}
+
+function updateActive(idx) {
+  dotsEl.querySelectorAll('.lb-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  const thumbs = thumbsEl.querySelectorAll('.lb-thumb');
+  thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
+  if (thumbs[idx]) thumbs[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}
+
+function setImage(src, caption, total, idx, inClass) {
+  // If image is already cached the src swap is instant; show spinner if not
+  const cached = imgCache[src] && imgCache[src].complete;
+  if (!cached) lightboxStage.classList.add('loading');
+
+  lightboxImg.onload = () => { lightboxStage.classList.remove('loading'); };
+  lightboxImg.onerror = () => { lightboxStage.classList.remove('loading'); };
+
+  lightboxImg.classList.remove('slide-in-right', 'slide-in-left', 'slide-out-left', 'slide-out-right');
+  void lightboxImg.offsetWidth;   // force reflow so animation restarts
+  lightboxImg.src = src;
+  lightboxImg.classList.add(inClass);
+
+  captionEl.textContent = `${caption} — ${idx + 1} / ${total}`;
+  counterEl.textContent = `${idx + 1} / ${total}`;
+  updateActive(idx);
+}
+
+function goToImage(newIdx, direction) {
+  if (isAnimating) return;
+  const proj = projects[currentProjectIndex];
+  isAnimating = true;
+
+  // Slide out current
+  const outClass = direction === 'next' ? 'slide-out-left' : 'slide-out-right';
+  lightboxImg.classList.remove('slide-in-right', 'slide-in-left');
+  void lightboxImg.offsetWidth;
+  lightboxImg.classList.add(outClass);
+
+  setTimeout(() => {
+    currentImageIndex = newIdx;
+    const inClass = direction === 'next' ? 'slide-in-right' : 'slide-in-left';
+    setImage(proj.images[newIdx], proj.caption, proj.images.length, newIdx, inClass);
+
+    // Preload neighbours after swap
+    preloadAround(currentProjectIndex, newIdx);
+
+    setTimeout(() => { isAnimating = false; }, IN_MS);
+  }, OUT_MS);
+}
+
+function openLightbox(projIdx) {
+  currentProjectIndex = projIdx;
+  currentImageIndex   = 0;
+  const proj = projects[projIdx];
+
+  // Start preloading entire project immediately
+  preloadAll(projIdx);
+
+  buildDots(proj.images.length);
+  buildThumbs(proj.images);
+
+  setImage(proj.images[0], proj.caption, proj.images.length, 0, 'slide-in-right');
+  preloadAround(projIdx, 0);
+
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function nextImage() {
+  if (isAnimating) return;
+  const proj = projects[currentProjectIndex];
+  if (currentImageIndex < proj.images.length - 1) {
+    goToImage(currentImageIndex + 1, 'next');
+  } else if (currentProjectIndex < projects.length - 1) {
+    currentProjectIndex++;
+    buildDots(projects[currentProjectIndex].images.length);
+    buildThumbs(projects[currentProjectIndex].images);
+    preloadAll(currentProjectIndex);
+    goToImage(0, 'next');
+  }
+}
+
+function prevImage() {
+  if (isAnimating) return;
+  const proj = projects[currentProjectIndex];
+  if (currentImageIndex > 0) {
+    goToImage(currentImageIndex - 1, 'prev');
+  } else if (currentProjectIndex > 0) {
+    currentProjectIndex--;
+    const prev = projects[currentProjectIndex];
+    buildDots(prev.images.length);
+    buildThumbs(prev.images);
+    preloadAll(currentProjectIndex);
+    goToImage(prev.images.length - 1, 'prev');
+  }
+}
+
+// Event listeners
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('prevBtn').addEventListener('click', prevImage);
+document.getElementById('nextBtn').addEventListener('click', nextImage);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape')     closeLightbox();
+  if (e.key === 'ArrowLeft')  prevImage();
+  if (e.key === 'ArrowRight') nextImage();
+});
+
+// Swipe support
+let touchStartX = 0;
+lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+lightbox.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) { dx < 0 ? nextImage() : prevImage(); }
+});
+
+// ─── CURSOR ───────────────────────────────────────────────────────────────────
+const dot  = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function animateCursor() {
+  rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+  dot.style.left  = mx + 'px'; dot.style.top  = my + 'px';
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animateCursor);
+})();
+document.querySelectorAll('a, button, .skill-card, .work-card, .tool-chip, .lb-thumb').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+});
+
+// ─── SCROLL ANIMATIONS ────────────────────────────────────────────────────────
+function toggleMenu() { document.getElementById('nav-mobile').classList.toggle('open'); }
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up, .stat-box').forEach(el => observer.observe(el));
+
+const barObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const fill = e.target.querySelector('.skill-bar-fill');
+      if (fill) fill.style.width = fill.dataset.w + '%';
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skill-card').forEach(el => barObserver.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// ─── YEAR ─────────────────────────────────────────────────────────────────────
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
